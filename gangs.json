@@ -1,0 +1,17 @@
+[
+  { "name": "acr", "value": "ACR" },
+  { "name": "ballas", "value": "Ballas" },
+  { "name": "blackdogs", "value": "BlackDogs" },
+  { "name": "bsk", "value": "BSK" },
+  { "name": "changang", "value": "ChanGang" },
+  { "name": "e.b.k", "value": "E.B.K" },
+  { "name": "gsf", "value": "GSF" },
+  { "name": "hooligans", "value": "HOOLIGANS" },
+  { "name": "hydra", "value": "Hydra" },
+  { "name": "latinos", "value": "Latinos" },
+  { "name": "otf", "value": "OTF" },
+  { "name": "r.s.k", "value": "R.S.K" },
+  { "name": "saints", "value": "Saints" },
+  { "name": "seaside", "value": "SeaSide" },
+  { "name": "streeteam", "value": "StreeTeam" }
+]
