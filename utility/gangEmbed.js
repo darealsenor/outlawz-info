@@ -9,6 +9,7 @@ function gangEmbed(returnedGangData, gang) {
             **In-Game Members**
             ----------------------`,
     )
+    .setTimestamp()
 
   returnedGangData.forEach((member, i) => {
     embed.addFields({

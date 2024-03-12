@@ -6,6 +6,7 @@ const { gangEmbed } = require('../../utility/gangEmbed')
 const gangs = JSON.parse(fs.readFileSync('gangs.json', { encoding: 'utf-8' }))
 
 module.exports = {
+  cooldown: 10,
   data: new SlashCommandBuilder()
     .setName('gang')
     .setDescription('Reterive information on a gang')

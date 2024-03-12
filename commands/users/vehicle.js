@@ -2,6 +2,7 @@ const { SlashCommandBuilder } = require('discord.js')
 const { getVehicleByPlate, getVehiclesByCID } = require('../../database/queries/vehicle')
 const { vehicleByPlateEmbed, vehicleByCIDEmbed } = require('../../utility/vehicleEmbed')
 module.exports = {
+  cooldown: 10,
   data: new SlashCommandBuilder()
     .setName('vehicle')
     .setDescription('Retreive Player vehicles')

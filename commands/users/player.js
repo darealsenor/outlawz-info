@@ -3,6 +3,7 @@ const { getPlayerByCID } = require('../../database/queries/player')
 const { playerEmbed } = require('../../utility/playerEmbed')
 
 module.exports = {
+  cooldown: 10,
   data: new SlashCommandBuilder()
     .setName('player')
     .setDescription('Retreive Players information')
