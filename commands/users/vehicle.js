@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js')
 const { getVehicleByPlate, getVehiclesByCID } = require('../../database/queries/vehicle')
-const { vehicleByPlateEmbed, vehicleByCIDEmbed } = require('../../utility/vehicleEmbed')
+const { vehicleByPlateEmbed, vehicleByCIDEmbed } = require('../../utility/embeds/vehicle')
 module.exports = {
   cooldown: 10,
   data: new SlashCommandBuilder()

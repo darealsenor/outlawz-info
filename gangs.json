@@ -1,17 +1,1 @@
-[
-  { "name": "acr", "value": "ACR" },
-  { "name": "ballas", "value": "Ballas" },
-  { "name": "blackdogs", "value": "BlackDogs" },
-  { "name": "bsk", "value": "BSK" },
-  { "name": "changang", "value": "ChanGang" },
-  { "name": "e.b.k", "value": "E.B.K" },
-  { "name": "gsf", "value": "GSF" },
-  { "name": "hooligans", "value": "HOOLIGANS" },
-  { "name": "hydra", "value": "Hydra" },
-  { "name": "latinos", "value": "Latinos" },
-  { "name": "otf", "value": "OTF" },
-  { "name": "r.s.k", "value": "R.S.K" },
-  { "name": "saints", "value": "Saints" },
-  { "name": "seaside", "value": "SeaSide" },
-  { "name": "streeteam", "value": "StreeTeam" }
-]
+[{"name":"Ballas","value":"ballas"},{"name":"Hydra","value":"hydra"},{"name":"E.B.K","value":"e.b.k"},{"name":"ChanGang","value":"changang"},{"name":"RSK","value":"rsk"},{"name":"Latinos","value":"latinos"},{"name":"BlackDogs","value":"blackdogs"},{"name":"OTF","value":"otf"},{"name":"BSK","value":"bsk"},{"name":"R.S.K","value":"r.s.k"},{"name":"HOOLIGANS","value":"hooligans"},{"name":"GSF","value":"gsf"},{"name":"Crips","value":"crips"},{"name":"Marabunta","value":"marabunta"},{"name":"FMG","value":"fmg"},{"name":"RUST","value":"rust"},{"name":"DOA","value":"doa"},{"name":"Dirty","value":"dirty"},{"name":"SOD","value":"sod"}]

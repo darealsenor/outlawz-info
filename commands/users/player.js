@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js')
 const { getPlayerByCID } = require('../../database/queries/player')
-const { playerEmbed } = require('../../utility/playerEmbed')
+const { playerEmbed } = require('../../utility/embeds/player')
 
 module.exports = {
   cooldown: 10,
@@ -13,7 +13,6 @@ module.exports = {
     const fullInfo = await getPlayerByCID(CID)
     const embed = playerEmbed(fullInfo, CID)
 
-    // console.log(embedData)
     await interaction.reply({ embeds: [embed] })
     return
   },

@@ -21,7 +21,7 @@ for (const folder of commandFolders) {
     if ('data' in command && 'execute' in command) {
       client.commands.set(command.data.name, command)
     } else {
-      console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`)
+      console.log('info', `[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`)
     }
   }
 }
@@ -33,11 +33,11 @@ for (const file of eventFiles) {
   const filePath = path.join(eventsPath, file)
   const event = require(filePath)
   if (event.once) {
-    console.log('Injected:', event.name)
+    console.log('info', 'Injected:', event.name)
     client.once(event.name, (...args) => event.execute(...args))
   } else {
     client.on(event.name, (...args) => event.execute(...args))
-    console.log('Injected:', event.name)
+    console.log('info', 'Injected:', event.name)
   }
 }
 

@@ -1,6 +1,7 @@
 const { SlashCommandBuilder } = require('discord.js')
 const { getGangLeaderboard, getTopTenLeaderBoard } = require('../../database/queries/gang')
-const { leaderboardEmbed } = require('../../utility/leaderboardEmbed')
+const { leaderboardEmbed } = require('../../utility/embeds/leaderboard')
+const { errorEmbed } = require('../../utility/embeds/error')
 
 module.exports = {
   cooldown: 10,
@@ -16,20 +17,23 @@ module.exports = {
     ),
 
   async execute(interaction) {
-    const type = interaction.options.getString('type')
-
     let embed
+    try {
+      const type = interaction.options.getString('type')
+      let res
 
-    if (type === 'gang') {
-      const res = await getGangLeaderboard()
-      embed = leaderboardEmbed(res)
-      //   console.log(res)
+      if (type === 'gang') {
+        res = await getGangLeaderboard()
+      } else if (type === 'everyone') {
+        res = await getTopTenLeaderBoard()
+      }
+
+      embed = leaderboardEmbed(res, type)
+    } catch (error) {
+      console.log('Caught error sbba:', error)
+      embed = errorEmbed(error.message)
     }
 
-    if (type === 'everyone') {
-      const res = await getTopTenLeaderBoard()
-      embed = leaderboardEmbed(res)
-    }
     await interaction.reply({ embeds: [embed] })
   },
 }
