@@ -1,7 +1,8 @@
 const { SlashCommandBuilder } = require('discord.js')
-const { getGangLeaderboard, getTopTenLeaderBoard } = require('../../database/queries/gang')
+const { getGangLeaderboard, getTopTenLeaderBoard } = require('../../models/queries/gang')
 const { leaderboardEmbed } = require('../../utility/embeds/leaderboard')
 const { errorEmbed } = require('../../utility/embeds/error')
+const { logger } = require('../../utility/logger')
 
 module.exports = {
   cooldown: 10,
@@ -30,7 +31,7 @@ module.exports = {
 
       embed = leaderboardEmbed(res, type)
     } catch (error) {
-      console.log('Caught error sbba:', error)
+      logger.warn('Caught Error: %s', error.message)
       embed = errorEmbed(error.message)
     }
 

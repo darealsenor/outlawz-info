@@ -1,13 +1,33 @@
-const { Events, Collection } = require('discord.js')
+const { Events, Collection, userMention } = require('discord.js')
+const {HandleAddPed, HandleUpdatePed} = require('../controllers/ped.controller')
+const { PedPreview } = require('../utility/PedPreview')
+const { logger } = require('../utility/logger')
 
 module.exports = {
   name: Events.InteractionCreate,
   async execute(interaction) {
+
+
+    if (interaction.customId === 'ped-add'){
+      await HandleAddPed(interaction)
+      await PedPreview(interaction.client)
+    }
+
+    if (interaction.customId === 'ped-update') {
+      const result = await HandleUpdatePed(interaction)
+      if (result.ok) {
+        return await interaction.reply('הפד עודכן אין לי כוח לרשום מה התעדכן פה תסתדר')
+      }
+      return await interaction.reply('משהו לא פסדר פה וגם פה אין לי כוח לרשום מה')
+      await PedPreview(interaction.client);
+    }
+
+
     if (!interaction.isChatInputCommand()) return
     const command = interaction.client.commands.get(interaction.commandName)
 
     if (!command) {
-      console.error(`No command matching ${interaction.commandName} was found.`)
+      logger.warn(`No command matching ${interaction.commandName} was found.`)
       return
     }
 
@@ -40,12 +60,16 @@ module.exports = {
     try {
       await command.execute(interaction)
     } catch (error) {
-      console.error(error)
+      logger.warn(error)
       if (interaction.replied || interaction.deferred) {
         await interaction.followUp({ content: 'There was an error while executing this command!', ephemeral: true })
       } else {
         await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true })
       }
     }
+
+
+
+    
   },
 }

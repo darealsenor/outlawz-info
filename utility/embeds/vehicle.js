@@ -35,7 +35,6 @@ function vehicleByPlateEmbed(returnedPlateData, plate) {
 }
 
 function vehicleByCIDEmbed(returnedPlateData, cid) {
-  // console.log(returnedPlateData)
   const embed = new EmbedBuilder()
     .setColor([255, 0, 0])
     .setTitle(`${cid}`)
@@ -45,7 +44,6 @@ function vehicleByCIDEmbed(returnedPlateData, cid) {
     )
 
   returnedPlateData.forEach((vehicle) => {
-    console.log(vehicle)
     embed.addFields({ name: 'Vehicle', value: vehicle.vehicle, inline: true }),
       embed.addFields({ name: 'Plate', value: vehicle.plate, inline: true }),
       embed.addFields({ name: 'Garage', value: vehicle.garage_id, inline: true })

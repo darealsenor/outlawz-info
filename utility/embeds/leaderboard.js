@@ -11,19 +11,23 @@ function leaderboardEmbed(returnedLeaderboardData, type) {
     )
     .setTimestamp()
 
-  returnedLeaderboardData.forEach((member, i) => {
-    if (member.organization == '' || !member.organization) {
-      return
-    }
-    console.log(member)
-    embed.addFields({
-      name: `${member.organization}`,
-      value: `**${i + 1}#** - ${member.name} - ${member.kills} Kills ${
-        type !== 'gang' ? `(${member.headshots} HS)` : ''
-      }`,
-      inline: true,
+
+    let msg = '';
+    // embed.addFields({
+    //   name: `${member.organization}`,
+    //   value: `**${i + 1}#** - ${member.name} - ${member.kills} Kills ${
+    //     type !== 'gang' ? `(${member.headshots} HS)` : ''
+    //   }`,
+    //   inline: true,
+    // })
+
+    returnedLeaderboardData.forEach((member, index) => {
+      msg = msg + `${index + 1} - <@${member.discord.replace('discord:', '').replace(/['"]+/g, '')}> - ${member.identifier} - ${type === 'gang' ? `${member.kills} Kills` : `${member.kills} (${(member.headshots / member.kills).toFixed(2)} HS Rate)`}\n`
     })
-  })
+
+
+    embed.addFields({name:'Gangs Leaderboard',value: msg})
+
   return embed
 }
 

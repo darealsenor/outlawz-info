@@ -1,7 +1,6 @@
 const { EmbedBuilder } = require('discord.js')
 
 function playerEmbed(returnedCidData, CID) {
-  console.log(CID)
   const embedData = {
     name: returnedCidData[0].name,
     assets: JSON.parse(returnedCidData[0].money),
@@ -9,6 +8,7 @@ function playerEmbed(returnedCidData, CID) {
     charinfo: JSON.parse(returnedCidData[0].charinfo),
     job: JSON.parse(returnedCidData[0].job),
     stats: JSON.parse(returnedCidData[0].stats),
+    cid: returnedCidData[0].citizenid
   }
 
   const embed = new EmbedBuilder()
@@ -16,7 +16,7 @@ function playerEmbed(returnedCidData, CID) {
     .setTitle(`${embedData.name}`)
     .setDescription(
       `
-      ${CID}
+      ${CID} - ${embedData.cid}
           **General Information**
           ----------------------`,
     )
@@ -45,6 +45,7 @@ function playerEmbed(returnedCidData, CID) {
     embed.addFields({ name: 'Kills', value: `${embedData.stats.kills ?? 0}`, inline: true })
     embed.addFields({ name: 'Headshots', value: `${embedData.stats.headshots ?? 0}`, inline: true })
     embed.addFields({ name: 'Captured', value: `${embedData.stats.captured ?? 0}`, inline: true })
+    embed.addFields({ name: 'HS/Kill Ratio', value: `${(embedData.stats.headshots / embedData.stats.kills).toFixed(2)} Headshots per kill average`, inline: true })
   }
 
   return embed

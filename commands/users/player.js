@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js')
-const { getPlayerByCID } = require('../../database/queries/player')
+const { getPlayerByCID } = require('../../models/queries/player')
 const { playerEmbed } = require('../../utility/embeds/player')
 
 module.exports = {
@@ -7,13 +7,19 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('player')
     .setDescription('Retreive Players information')
-    .addStringOption((option) => option.setName('cid').setDescription('Player cid').setRequired(true)),
+    .addUserOption(option =>
+      option.setName('target').setDescription('Get information on a player via discord id').setRequired(true)),
   async execute(interaction) {
-    const CID = interaction.options.getString('cid')
-    const fullInfo = await getPlayerByCID(CID)
-    const embed = playerEmbed(fullInfo, CID)
 
-    await interaction.reply({ embeds: [embed] })
-    return
+
+    try {
+      const target = interaction.options.getUser('target')
+      const fullInfo = await getPlayerByCID(target)
+      const embed = playerEmbed(fullInfo, target)
+  
+      await interaction.reply({ embeds: [embed] })
+    } catch (error) {
+      await interaction.reply(error.message)
+    }
   },
 }

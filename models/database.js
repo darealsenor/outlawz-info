@@ -1,8 +1,9 @@
 const mysql = require('mysql2/promise')
+const { logger } = require('../utility/logger')
 
 let pool
 
-async function dbConnect() {
+function dbConnect(cb) {
   try {
     pool = mysql.createPool({
       host: process.env.DB_HOST,
@@ -10,11 +11,13 @@ async function dbConnect() {
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
     })
+    logger.info('Connected to database.')
 
-    console.log('Connected to database')
+    cb?.()
+    return pool
   } catch (error) {
-    console.error('Error connecting to database:', error)
-    throw error // Re-throw the error for handling in the main program
+   logger.warn('Error connecting to database: %s', error)
+    throw new Error(error) // Re-throw the error for handling in the main program
   }
 }
 
@@ -23,7 +26,7 @@ async function executeQuery(query, params = []) {
     const [results] = await pool.execute(query, params)
     return results
   } catch (error) {
-    console.error('Error executing query:', error)
+   logger.warn('Error executing query: %s', error)
     throw error // Re-throw the error for handling
   }
 }

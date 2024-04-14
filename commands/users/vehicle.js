@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js')
-const { getVehicleByPlate, getVehiclesByCID } = require('../../database/queries/vehicle')
+const { getVehicleByPlate, getVehiclesByCID } = require('../../models/queries/vehicle')
 const { vehicleByPlateEmbed, vehicleByCIDEmbed } = require('../../utility/embeds/vehicle')
 module.exports = {
   cooldown: 10,
@@ -43,7 +43,7 @@ module.exports = {
         interaction.reply({ content: 'No vehicle found for the provided search.' })
       }
     } catch (error) {
-      console.error(error)
+      logger.warn(error)
       interaction.reply('Could not find the vehicle / CID.')
     }
   },
